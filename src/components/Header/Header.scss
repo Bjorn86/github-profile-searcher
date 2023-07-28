@@ -1,0 +1,18 @@
+.header {
+  max-width: 100%;
+  border-bottom: 1px solid $color-dark-grey;
+  &__wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    box-sizing: border-box;
+  }
+  &__link {
+    text-decoration: none;
+    @include hover-link;
+  }
+  &__title {
+    margin: 0;
+    @include font-main($textXXL, $color-white, 400);
+  }
+}

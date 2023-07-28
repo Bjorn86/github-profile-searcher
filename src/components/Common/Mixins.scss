@@ -12,3 +12,10 @@
     letter-spacing: $ls;
   }
 }
+
+@mixin hover-link {
+  transition: opacity 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
+}
