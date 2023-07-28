@@ -1,0 +1,14 @@
+@mixin font-main($size, $color, $weight, $lh: false, $ls: false) {
+  font: {
+    family: 'Inter', Helvetica, Arial, sans-serif;
+    size: $size;
+    weight: $weight;
+  }
+  color: $color;
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $ls {
+    letter-spacing: $ls;
+  }
+}
