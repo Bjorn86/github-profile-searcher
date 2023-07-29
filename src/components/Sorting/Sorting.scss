@@ -1,0 +1,63 @@
+.sorting {
+  max-width: 100%;
+  z-index: 1;
+  &__btn {
+    width: 225px;
+    height: 50px;
+    padding: 0 0 0 24px;
+    border: 3px solid $color-violet;
+    border-radius: 12px;
+    background: url('../../assets/icons/chevron-down.svg') calc(100% - 16px)
+        center/15px no-repeat,
+      $color-white;
+    @include font-main($textS, $color-black, 400, 1.2);
+    text-align: left;
+    cursor: pointer;
+    &:active,
+    &:focus,
+    &:focus-visible {
+      border-color: $color-green;
+      outline: none;
+    }
+  }
+  &__list {
+    display: none;
+    width: 225px;
+    padding: 0;
+    border-radius: 12px;
+    background: $color-white;
+    list-style: none;
+    margin: 5px 0 0 0;
+    &_open {
+      display: block;
+    }
+  }
+  &__item {
+    padding: 10px 0 10px 27px;
+    @include font-main($textS, $color-black, 400, 1.2);
+    cursor: pointer;
+    user-select: none;
+    &:first-child {
+      &:active,
+      &:focus,
+      &:hover,
+      &[aria-selected='true'] {
+        border-radius: 12px 12px 0 0;
+      }
+    }
+    &:last-child {
+      &:active,
+      &:focus,
+      &:hover,
+      &[aria-selected='true'] {
+        border-radius: 0 0 12px 12px;
+      }
+    }
+    &:active,
+    &:focus,
+    &:hover,
+    &[aria-selected='true'] {
+      background-color: $color-green;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.search-form {
+  max-width: 925px;
+  width: 100%;
+  position: relative;
+  &__field {
+    width: 100%;
+    height: 50px;
+    padding: 10px 140px 10px 40px;
+    box-sizing: border-box;
+    border: 3px solid $color-violet;
+    border-radius: 12px;
+    background: url('../../assets/icons/icon-search.svg') 10px center/24px
+        no-repeat,
+      $color-white;
+    @include font-main($textM, $color-black, 400, 1.2);
+    &[type='search']::-webkit-search-cancel-button {
+      display: none;
+      appearance: none;
+    }
+    &::placeholder {
+      color: $color-light-grey;
+    }
+    &:focus::placeholder {
+      visibility: hidden;
+    }
+    &:active,
+    &:focus,
+    &:focus-visible {
+      border-color: $color-green;
+      outline: none;
+    }
+    &:disabled {
+      opacity: 0.2;
+    }
+  }
+  &__btn {
+    width: 120px;
+    height: 38px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 0;
+    border: 3px solid $color-violet;
+    border-radius: 8px;
+    background-color: $color-violet;
+    @include font-main($textM, $color-white, 400, 1.2, 1px);
+    @include hover-link;
+    cursor: pointer;
+    &:active,
+    &:focus,
+    &:focus-visible {
+      border-color: $color-green;
+      outline: none;
+    }
+    &_disabled {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
+}
