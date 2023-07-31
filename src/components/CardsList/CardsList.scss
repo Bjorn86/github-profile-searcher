@@ -1,0 +1,21 @@
+.cards-list {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  &__list {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 260px);
+    justify-content: space-evenly;
+    gap: 20px;
+    list-style: none;
+  }
+  &__info {
+    margin: 0;
+    @include font-main($textXL, $color-white, 400, 1.2);
+    text-align: center;
+  }
+}

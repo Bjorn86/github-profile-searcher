@@ -57,4 +57,11 @@
       pointer-events: none;
     }
   }
+  &__error {
+    display: block;
+    min-height: 15px;
+    margin-top: 5px;
+    padding-left: 10px;
+    @include font-main($textXS, $color-red, 400, 1.2);
+  }
 }

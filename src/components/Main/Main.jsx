@@ -1,12 +1,12 @@
 // IMPORT STYLES
-import './Search.scss';
+import './Main.scss';
 
 // IMPORT COMPONENTS
-import SearchForm from '../SearchForm/SearchForm.jsx';
-import Sorting from '../Sorting/Sorting.jsx';
+import CardsList from '../CardsList/CardsList.jsx';
+import Search from '../Search/Search.jsx';
 
-// SEARCH COMPONENT
-function Search({
+// MAIN COMPONENT
+function Main({
   onSearchSubmit,
   onSearchChange,
   searchQuery,
@@ -17,26 +17,31 @@ function Search({
   onOptionSelect,
   toSwitchOptions,
   selectedOption,
+  userCards,
+  isCardsNotFound,
+  serverErrorText,
 }) {
   return (
-    <section className='search' aria-label='Поиск и сортировка'>
-      <SearchForm
+    <main className='main'>
+      <Search
         onSearchSubmit={onSearchSubmit}
         onSearchChange={onSearchChange}
         searchQuery={searchQuery}
         queryError={queryError}
         isLoading={isLoading}
-      />
-      <Sorting
         isOptionsOpen={isOptionsOpen}
         onOptionMenuClick={onOptionMenuClick}
         onOptionSelect={onOptionSelect}
         toSwitchOptions={toSwitchOptions}
         selectedOption={selectedOption}
-        isLoading={isLoading}
       />
-    </section>
+      <CardsList
+        userCards={userCards}
+        isCardsNotFound={isCardsNotFound}
+        serverErrorText={serverErrorText}
+      />
+    </main>
   );
 }
 
-export default Search;
+export default Main;

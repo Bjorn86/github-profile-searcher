@@ -5,6 +5,9 @@ export const SELECT_OPTIONS = [
   'Меньше репозиториев',
 ];
 
+// API VARIABLES
+export const API_URL = 'https://api.github.com';
+
 // KEYS VARIABLES
 export const ESCAPE_KEY = 'Escape';
 export const SPACE_BAR_KEY = 'SpaceBar';

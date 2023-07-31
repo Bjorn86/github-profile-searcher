@@ -23,6 +23,7 @@ function Sorting({
   onOptionSelect,
   toSwitchOptions,
   selectedOption,
+  isLoading,
 }) {
   // HANDLER KEY NAVIGATION
   function handleKeyDown(evt, index) {
@@ -74,7 +75,7 @@ function Sorting({
   return (
     <div className='sorting'>
       <button
-        className='sorting__btn'
+        className={clsx('sorting__btn', { sorting__btn_disabled: isLoading })}
         type='button'
         onClick={onOptionMenuClick}
         onKeyDown={handleListKeyDown}

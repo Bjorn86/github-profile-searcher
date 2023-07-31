@@ -1,27 +1,24 @@
-//IMPORT PACKAGES
-import { useState } from 'react';
-
 // IMPORT STYLES
 import './SearchForm.scss';
 
 // SEARCH FORM COMPONENT
-function SearchForm({ isLoading }) {
-  // HOOKS
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // HANDLER SUBMIT
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(searchQuery);
-  }
-
+function SearchForm({
+  onSearchSubmit,
+  onSearchChange,
+  searchQuery,
+  queryError,
+  isLoading,
+}) {
   return (
     <form
       className='search-form'
       id='search-user'
       role='search'
       noValidate
-      onSubmit={handleSubmit}
+      onSubmit={(evt) => {
+        evt.preventDefault();
+        onSearchSubmit();
+      }}
     >
       <input
         className='search-form__field'
@@ -34,9 +31,10 @@ function SearchForm({ isLoading }) {
         placeholder='Поиск пользователя'
         disabled={isLoading}
         value={searchQuery || ''}
-        onChange={(evt) => setSearchQuery(evt.target.value)}
+        onChange={(evt) => onSearchChange(evt.target.value)}
       />
       <button className='search-form__btn'>Найти</button>
+      <span className='search-form__error'>{queryError}</span>
     </form>
   );
 }
