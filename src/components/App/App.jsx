@@ -1,6 +1,7 @@
 // IMPORT PACKAGES
 import { useEffect, useRef, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import useScrollObserver from '../../hooks/useScrollObserver.jsx';
 
 // IMPORT STYLES
 import './App.scss';
@@ -8,6 +9,7 @@ import './App.scss';
 // IMPORT COMPONENTS
 import AppLayout from '../AppLayout/AppLayout.jsx';
 import Main from '../Main/Main.jsx';
+import DetailPage from '../DetailPage/DetailPage.jsx';
 
 // IMPORT API'S
 import * as api from '../../utils/api';
@@ -32,9 +34,11 @@ function App() {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
   const [isSorting, setSorting] = useState(false);
+  const [isReturningFromDetail, setIsReturningFromDetail] = useState(false);
   const lastElement = useRef();
-  const observer = useRef();
   const prevSelectedOption = useRef();
+  const location = useLocation();
+  const observer = useScrollObserver(handleScroll);
 
   // GET USERS
   async function getUsers(searchQuery, selectedOption, page) {
@@ -62,6 +66,28 @@ function App() {
     } finally {
       setLoading(false);
       setSorting(false);
+    }
+  }
+
+  // GET USER
+  async function getUser(userName) {
+    setLoading(true);
+    try {
+      const userData = await api.getUser(userName);
+      if (userData) {
+        return userData;
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // HANDLER SCROLL
+  function handleScroll() {
+    if (page < totalPage && !isReturningFromDetail) {
+      setPage((prevPage) => prevPage + 1);
     }
   }
 
@@ -110,24 +136,26 @@ function App() {
 
   // PAGINATION OBSERVER
   useEffect(() => {
-    if (isLoading) return;
-    if (observer.current) observer.current.disconnect();
-    const cb = function (entries, observer) {
-      if (entries[0].isIntersecting && page < totalPage) {
-        setPage(page + 1);
+    if (location.pathname === '/') {
+      if (isLoading) return;
+      if (isReturningFromDetail) {
+        setIsReturningFromDetail(false);
+        return;
       }
-    };
-    observer.current = new IntersectionObserver(cb);
-    observer.current.observe(lastElement.current);
-  }, [isLoading]);
+      if (observer.current) observer.current.disconnect();
+      observer.current.observe(lastElement.current);
+    }
+  }, [isLoading, location, observer, isReturningFromDetail]);
 
   // DEPENDENCIES ON THE RENDER OF USER CARDS
   useEffect(() => {
-    if (userCards.length) {
-      const savedSearchQuery = sessionStorage.getItem('searchQuery');
-      getUsers(savedSearchQuery, selectedOption, page);
+    if (location.pathname === '/' && !isReturningFromDetail) {
+      if (userCards.length) {
+        const savedSearchQuery = sessionStorage.getItem('searchQuery');
+        getUsers(savedSearchQuery, selectedOption, page);
+      }
     }
-  }, [page, selectedOption]);
+  }, [page, selectedOption, location]);
 
   // RESET AN EMPTY REQUEST ERROR
   useEffect(() => {
@@ -160,6 +188,15 @@ function App() {
                 userCards={userCards}
                 isCardsNotFound={isCardsNotFound}
                 serverErrorText={serverErrorText}
+              />
+            }
+          />
+          <Route
+            path=':userName'
+            element={
+              <DetailPage
+                onLoad={getUser}
+                setIsReturningFromDetail={setIsReturningFromDetail}
               />
             }
           />

@@ -1,0 +1,86 @@
+.detail-page {
+  max-width: 100%;
+  flex: 1;
+  &__section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  &__btn-back {
+    width: 120px;
+    height: 38px;
+    align-self: flex-start;
+    padding: 0;
+    border: 3px solid $color-violet;
+    border-radius: 8px;
+    background-color: $color-violet;
+    @include font-main($textM, $color-white, 400, 1.2, 1px);
+    @include hover-link;
+    cursor: pointer;
+    &:active,
+    &:focus,
+    &:focus-visible {
+      border-color: $color-green;
+      outline: none;
+    }
+  }
+  &__wrapper {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  &__avatar {
+    width: 300px;
+    height: 300px;
+    align-self: center;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__text {
+    margin: 0;
+    @include font-main($textM, $color-white, 400, 1.2);
+  }
+  &__link {
+    @include font-main($textM, $color-white, 400, 1.2);
+    text-decoration: none;
+    @include hover-link;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .detail-page {
+    &__section {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .detail-page {
+    &__btn-back {
+      width: 80px;
+      font-size: $textS;
+    }
+    &__avatar {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}

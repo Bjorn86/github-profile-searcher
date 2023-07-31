@@ -7,12 +7,17 @@
     padding: 20px 40px;
     box-sizing: border-box;
   }
-  &__link {
-    text-decoration: none;
-    @include hover-link;
-  }
   &__title {
     margin: 0;
     @include font-main($textXXL, $color-white, 400);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header {
+    &__wrapper {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
   }
 }

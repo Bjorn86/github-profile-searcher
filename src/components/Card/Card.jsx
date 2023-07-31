@@ -8,7 +8,7 @@ import './Card.scss';
 function Card({ card }) {
   return (
     <li className='card'>
-      <Link to={`/${card.id}`} className='card__link'>
+      <Link to={`/${card.login}`} className='card__link'>
         <img
           src={card.avatar_url}
           alt={`Аватар пользователя ${card.login}`}

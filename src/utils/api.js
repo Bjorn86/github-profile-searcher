@@ -5,14 +5,19 @@ import { makeRequest } from './utils';
 import { API_URL } from './constants';
 
 // SEARCH USERS
-export function searchUsers(query, index, page) {
-  let order;
+export function searchUsers(query, index, page = 1) {
+  let endpoint;
   if (index === 1) {
-    order = 'desc';
+    endpoint = `/search/users?q=${query}&page=${page}&per_page=36&sort=repositories&order=desc`;
   } else if (index === 2) {
-    order = 'asc';
+    endpoint = `/search/users?q=${query}&page=${page}&per_page=36&sort=repositories&order=asc`;
   } else {
-    order = false;
+    endpoint = `/search/users?q=${query}&page=${page}&per_page=36`;
   }
-  return makeRequest(API_URL, '/search/users', 'GET', query, order, page);
+  return makeRequest(API_URL, endpoint, 'GET');
+}
+
+// GET USER
+export function getUser(userName) {
+  return makeRequest(API_URL, `/users/${userName}`, 'GET');
 }

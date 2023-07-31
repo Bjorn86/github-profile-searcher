@@ -1,0 +1,50 @@
+.not-found {
+  max-width: 100%;
+  flex: 1;
+  &__section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  &__title {
+    margin-top: 50px;
+    margin-bottom: 0;
+    @include font-main($textXXL, $color-white, 400, 1.2);
+    text-align: center;
+  }
+  &__description {
+    margin: 0;
+    @include font-main($textL, $color-white, 400, 1.2);
+    text-align: center;
+  }
+  &__link {
+    @include font-main($textL, $color-violet, 400, 1.2);
+    text-decoration: none;
+    text-align: center;
+    @include hover-link;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .not-found {
+    &__section {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+    &__title {
+      font-size: $textXL;
+    }
+    &__description {
+      font-size: $textM;
+    }
+    &__link {
+      font-size: $textM;
+    }
+  }
+}

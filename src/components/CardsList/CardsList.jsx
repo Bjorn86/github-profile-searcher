@@ -12,7 +12,7 @@ function CardsList({ userCards, isCardsNotFound, serverErrorText }) {
       aria-label='Секция с карточками пользователей'
     >
       {isCardsNotFound && <p className='cards-list__info'>Ничего не найдено</p>}
-      {!isCardsNotFound && !userCards.length && (
+      {!isCardsNotFound && !userCards.length && !serverErrorText && (
         <p className='cards-list__info'>Введите поисковый запрос</p>
       )}
       {serverErrorText && <p className='cards-list__info'>{serverErrorText}</p>}

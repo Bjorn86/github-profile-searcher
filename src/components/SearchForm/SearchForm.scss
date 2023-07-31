@@ -65,3 +65,15 @@
     @include font-main($textXS, $color-red, 400, 1.2);
   }
 }
+
+@media screen and (max-width: 450px) {
+  .search-form {
+    &__field {
+      font-size: $textS;
+    }
+    &__btn {
+      width: 70px;
+      font-size: $textS;
+    }
+  }
+}
