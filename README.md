@@ -35,7 +35,8 @@
 
 ### Screenshot
 
-![Desktop screenshot](./screenshot/spacex_1.png)
+![Desktop screenshot](./screenshot/testing-skyeng-1.png)
+![Desktop screenshot](./screenshot/testing-skyeng-2.png)
 
 ### Директории проекта
 
@@ -69,7 +70,7 @@
 
 ### Чему я научился работая над проектом
 
-- Юнит-тестированию функционала
+- Закрепил знания по React
 
 ## Автор
 
